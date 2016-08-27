@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/repertoiregenerator":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/repertoiregenerator","hostpath":"/Users/jgimeno/PhpstormProjects/RepertoireGenerator","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/jgimeno/PhpstormProjects/RepertoireGenerator","disabled":false,"__vagrantfile":true}}}
