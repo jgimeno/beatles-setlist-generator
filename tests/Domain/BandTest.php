@@ -4,6 +4,7 @@ namespace Tests\Repertoire\Domain;
 
 use Repertoire\Domain\Band;
 use Repertoire\Domain\Repertoire;
+use Repertoire\Domain\Song;
 
 class BandTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,5 +30,15 @@ class BandTest extends \PHPUnit_Framework_TestCase
         $band->addRepertoire($repertoire2);
 
         $this->assertEquals([$repertoire1, $repertoire2], $band->getRepertoires());
+    }
+
+    public function testABandHasSongsThatTHeyKnowHowToPlay()
+    {
+        $band = Band::withName("The Beatboys");
+
+        $songWeKnow = Song::withName("Hey Jude");
+
+        $band->addSongWeKnow($songWeKnow);
+        $this->assertEquals([$songWeKnow], $band->getSongsWeKnow());
     }
 }

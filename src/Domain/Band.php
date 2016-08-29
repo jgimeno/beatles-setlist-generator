@@ -19,6 +19,14 @@ class Band
      */
     private $name;
 
+    /**
+     * @var array
+     */
+    private $songsWeKnow = array();
+
+    /**
+     * @var array
+     */
     protected $repertoires = array();
 
     public function __construct(BandId $id = null, BandName $name = null)
@@ -44,5 +52,15 @@ class Band
     public function getRepertoires() : array
     {
         return $this->repertoires;
+    }
+
+    public function addSongWeKnow(Song $song)
+    {
+        $this->songsWeKnow[] = $song;
+    }
+
+    public function getSongsWeKnow(): array
+    {
+        return $this->songsWeKnow;
     }
 }
