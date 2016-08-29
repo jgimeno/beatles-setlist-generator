@@ -2,6 +2,7 @@
 
 namespace Tests\Repertoire\Domain;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Repertoire\Domain\Band;
 use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
 use Repertoire\Domain\Repertoire;
@@ -40,7 +41,7 @@ class BandTest extends \PHPUnit_Framework_TestCase
         $songWeKnow = Song::withName("Hey Jude");
 
         $band->addSongWeKnow($songWeKnow);
-        $this->assertEquals([$songWeKnow], $band->getSongsWeKnow());
+        $this->assertEquals(new ArrayCollection([$songWeKnow]), $band->getSongsWeKnow());
     }
 
     /**

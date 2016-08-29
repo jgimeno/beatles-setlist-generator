@@ -28,10 +28,10 @@ class AddSongWeKnowHandler
 
         if (!$band) {
             $band = Band::withName($bandName);
-            $this->bandRepository->save($band);
         }
 
         $song = Song::withName($songName);
         $band->addSongWeKnow($song);
+        $this->bandRepository->save($band);
     }
 }

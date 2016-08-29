@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Repertoire\Application\Command\Handler\AddSongWeKnowHandler;
 use Repertoire\Application\Persistence\BandRepositoryInterface;
 use Repertoire\Infrastructure\DoctrineBandRepository;
 
@@ -16,7 +15,6 @@ class RepertoireServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 
     /**

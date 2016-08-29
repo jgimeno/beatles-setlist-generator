@@ -30,7 +30,7 @@ return [
                 'Repertoire'
             ],
             'paths'      => [
-                base_path('mappings')
+                base_path('database/mappings')
             ],
             'repository' => Doctrine\ORM\EntityRepository::class,
             'proxies'    => [
@@ -111,7 +111,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'custom_types'              => [
-        'json' => LaravelDoctrine\ORM\Types\Json::class
+        'json' => LaravelDoctrine\ORM\Types\Json::class,
+        'bandname' => Repertoire\Infrastructure\DoctrineTypes\BandName::class,
     ],
     /*
     |--------------------------------------------------------------------------

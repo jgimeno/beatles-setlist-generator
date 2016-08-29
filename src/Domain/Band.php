@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Repertoire\Domain;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
 use Repertoire\Domain\Value\BandName;
 use Repertoire\Domain\Value\Identifier\BandId;
@@ -23,7 +24,7 @@ class Band
     /**
      * @var array
      */
-    private $songsWeKnow = array();
+    private $songsWeKnow;
 
     /**
      * @var array
@@ -38,6 +39,8 @@ class Band
 
         $this->id = $id;
         $this->name = $name;
+
+        $this->songsWeKnow = new ArrayCollection();
     }
 
     public static function withName(string $name)
@@ -64,9 +67,10 @@ class Band
         }
 
         $this->songsWeKnow[] = $song;
+        $song->assignToBand($this);
     }
 
-    public function getSongsWeKnow(): array
+    public function getSongsWeKnow(): ArrayCollection
     {
         return $this->songsWeKnow;
     }

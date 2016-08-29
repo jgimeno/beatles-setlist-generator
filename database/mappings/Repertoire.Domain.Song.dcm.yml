@@ -1,0 +1,19 @@
+# Repertoire.Domain.Song.dcm.yml
+Repertoire\Domain\Song:
+  type: entity
+  table: songs
+  id:
+    id:
+      type: string
+  fields:
+    name:
+      type: string
+    essential:
+      type: boolean
+  manyToOne:
+    band:
+      targetEntity: Band
+      inversedBy: songsWeKnow
+      joinColumn:
+        name: band_id
+        referencedColumnName: id

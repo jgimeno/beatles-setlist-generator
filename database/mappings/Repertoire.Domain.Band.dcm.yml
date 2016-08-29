@@ -1,0 +1,17 @@
+# Repertoire.Domain.Band.dcm.yml
+Repertoire\Domain\Band:
+  type: entity
+  table: bands
+  id:
+    id:
+      type: string
+  fields:
+    name:
+      type: bandname
+  oneToMany:
+    songsWeKnow:
+      targetEntity: Song
+      mappedBy: band
+      cascade:
+        - persist
+        - remove

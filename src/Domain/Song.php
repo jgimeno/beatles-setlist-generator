@@ -23,6 +23,11 @@ class Song
     private $essential = false;
 
     /**
+     * @var
+     */
+    private $band = null;
+
+    /**
      * Song constructor.
      * @param SongId $id The id.
      * @param SongName $name The name of the song.
@@ -61,5 +66,10 @@ class Song
     public function isEqual(Song $song)
     {
         return $song->getName()->isEqual($this->getName());
+    }
+
+    public function assignToBand(Band $band)
+    {
+        $this->band = $band;
     }
 }
