@@ -57,4 +57,9 @@ class Song
     {
         return $this->name;
     }
+
+    public function isEqual(Song $song)
+    {
+        return $song->getName()->isEqual($this->getName());
+    }
 }

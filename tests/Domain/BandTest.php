@@ -3,6 +3,7 @@
 namespace Tests\Repertoire\Domain;
 
 use Repertoire\Domain\Band;
+use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
 use Repertoire\Domain\Repertoire;
 use Repertoire\Domain\Song;
 
@@ -40,5 +41,21 @@ class BandTest extends \PHPUnit_Framework_TestCase
 
         $band->addSongWeKnow($songWeKnow);
         $this->assertEquals([$songWeKnow], $band->getSongsWeKnow());
+    }
+
+    /**
+     * @expectedException Repertoire\Domain\Exception\BandAlreadyKnowsSongException
+     */
+    public function testWeCannotAddASongWeAlreadyKnowIntoTheBand()
+    {
+        $band = Band::withName("The Beatboys");
+
+        $songWeKnow = Song::withName("Hey Jude");
+
+        $band->addSongWeKnow($songWeKnow);
+
+        $alreadyKnownSong = Song::withName("Hey Jude");
+
+        $band->addSongWeKnow($alreadyKnownSong);
     }
 }

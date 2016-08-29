@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Repertoire\Domain;
 
+use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
 use Repertoire\Domain\Value\BandName;
 use Repertoire\Domain\Value\Identifier\BandId;
 
@@ -56,6 +57,12 @@ class Band
 
     public function addSongWeKnow(Song $song)
     {
+        foreach ($this->songsWeKnow as $knownSong) {
+            if ($song->isEqual($knownSong)) {
+                throw new BandAlreadyKnowsSongException();
+            }
+        }
+
         $this->songsWeKnow[] = $song;
     }
 

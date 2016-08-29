@@ -11,6 +11,11 @@ abstract class ValueObject
         $this->value = $value;
     }
 
+    public function isEqual(ValueObject $value)
+    {
+        return $this->value == $value->value;
+    }
+
     public function __toString()
     {
         return (string) $this->value;
