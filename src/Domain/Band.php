@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Repertoire\Domain;
 
 use Repertoire\Domain\Value\BandName;
@@ -17,6 +19,8 @@ class Band
      */
     private $name;
 
+    protected $repertoires = array();
+
     public function __construct(BandId $id = null, BandName $name = null)
     {
         if (!$id || !$name) {
@@ -25,5 +29,20 @@ class Band
 
         $this->id = $id;
         $this->name = $name;
+    }
+
+    public static function withName(string $name)
+    {
+        return new self(BandId::generate(), new BandName($name));
+    }
+
+    public function addRepertoire(Repertoire $repertoire)
+    {
+        $this->repertoires[] = $repertoire;
+    }
+
+    public function getRepertoires() : array
+    {
+        return $this->repertoires;
     }
 }
