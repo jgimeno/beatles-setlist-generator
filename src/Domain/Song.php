@@ -33,10 +33,10 @@ class Song
      * @param SongName $name The name of the song.
      * @param bool $essential
      */
-    public function __construct(SongId $id = null, SongName $name = null, bool $essential = false)
+    public function __construct(SongId $id = null, SongName $name = null, int $era = null, bool $essential = false)
     {
-        if (!$id || !$name) {
-            throw new \InvalidArgumentException("A Song must have at least Name and Id.");
+        if (!$id || !$name || !$era) {
+            throw new \InvalidArgumentException("A Song must have at least Id, name and era.");
         }
 
         $this->id = $id;
@@ -44,9 +44,9 @@ class Song
         $this->essential = $essential;
     }
 
-    public static function withName(string $name, $essential = false)
+    public static function withNameAndEra(string $name, int $era, $essential = false)
     {
-        return new self(SongId::generate(), new SongName($name), $essential);
+        return new self(SongId::generate(), new SongName($name), $era, $essential);
     }
 
     /**

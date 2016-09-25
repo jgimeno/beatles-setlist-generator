@@ -13,7 +13,7 @@ class AddSong extends Command
      *
      * @var string
      */
-    protected $signature = 'repertoire:addSong {name}';
+    protected $signature = 'repertoire:addSong {--e|essential : Set the song as essential} {name}';
 
     /**
      * The console command description.
@@ -43,8 +43,14 @@ class AddSong extends Command
      */
     public function handle()
     {
+        $isEssential = false;
+
+        if ($this->option('essential')) {
+            $isEssential = true;
+        }
+
         $this->handler->execute(
-            new AddSongWeKnow("The Beatboys", $this->argument('name'))
+            new AddSongWeKnow("The Beatboys", $this->argument('name'), $isEssential)
         );
     }
 }

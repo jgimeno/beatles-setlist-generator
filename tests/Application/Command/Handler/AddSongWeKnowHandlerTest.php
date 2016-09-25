@@ -7,6 +7,7 @@ use Repertoire\Application\Command\AddSongWeKnow;
 use Repertoire\Application\Command\Handler\AddSongWeKnowHandler;
 use Repertoire\Application\Persistence\BandRepositoryInterface;
 use Repertoire\Domain\Band;
+use Repertoire\Domain\Constant\SongEra;
 use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
 use Repertoire\Domain\Song;
 
@@ -14,7 +15,7 @@ class AddSongWeKnowHandlerTest extends MockeryTestCase
 {
     public function testItSavesANewTheBandWhenItDoesNotExist()
     {
-        $command = new AddSongWeKnow("The Beatboys", "Let it be");
+        $command = new AddSongWeKnow("The Beatboys", "Let it be", 1);
 
         $mockedRepository = \Mockery::mock(BandRepositoryInterface::class);
         $mockedRepository->shouldReceive('getBandByName')
@@ -27,7 +28,7 @@ class AddSongWeKnowHandlerTest extends MockeryTestCase
             ->with(\Mockery::on(function (Band $arg) {
                 $this->assertInstanceOf(Band::class, $arg);
                 $this->assertEquals("The Beatboys", $arg->getName());
-                $this->assertTrue($arg->knowsSong(Song::withName("Let it be")));
+                $this->assertTrue($arg->knowsSong(Song::withNameAndEra("Let it be", SongEra::THIRD_ERA)));
                 return true;
             }));
 
@@ -37,7 +38,7 @@ class AddSongWeKnowHandlerTest extends MockeryTestCase
 
     public function testItShouldNotCreateAnotherBandWhenBandExists()
     {
-        $command = new AddSongWeKnow("The Beatboys", "Let it be");
+        $command = new AddSongWeKnow("The Beatboys", "Let it be", 3);
 
         $existingBand = Band::withName("The Beatboys");
 
@@ -59,10 +60,10 @@ class AddSongWeKnowHandlerTest extends MockeryTestCase
     {
         $this->expectException(BandAlreadyKnowsSongException::class);
 
-        $command = new AddSongWeKnow("The Beatboys", "Let it be");
+        $command = new AddSongWeKnow("The Beatboys", "Let it be", 3);
 
         $existingBand = Band::withName("The Beatboys");
-        $existingBand->addSongWeKnow(Song::withName("Let it be"));
+        $existingBand->addSongWeKnow(Song::withNameAndEra("Let it be", SongEra::THIRD_ERA));
 
         $mockedRepository = \Mockery::mock(BandRepositoryInterface::class);
         $mockedRepository->shouldReceive('getBandByName')
@@ -81,7 +82,7 @@ class AddSongWeKnowHandlerTest extends MockeryTestCase
     {
         $isEssential = true;
 
-        $command = new AddSongWeKnow("The Beatboys", "Let it be", $isEssential);
+        $command = new AddSongWeKnow("The Beatboys", "Let it be", 1, $isEssential);
 
         $mockedRepository = \Mockery::mock(BandRepositoryInterface::class);
         $mockedRepository->shouldReceive('getBandByName')
@@ -94,7 +95,7 @@ class AddSongWeKnowHandlerTest extends MockeryTestCase
             ->with(\Mockery::on(function (Band $arg) {
                 $this->assertInstanceOf(Band::class, $arg);
                 $this->assertEquals("The Beatboys", $arg->getName());
-                $this->assertTrue($arg->knowsSong(Song::withName("Let it be")));
+                $this->assertTrue($arg->knowsSong(Song::withNameAndEra("Let it be", SongEra::THIRD_ERA)));
 
                 $songsWeKnow = $arg->getSongsWeKnow();
                 $song = $songsWeKnow->first();
