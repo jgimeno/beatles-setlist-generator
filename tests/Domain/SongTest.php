@@ -3,6 +3,7 @@
 namespace Tests\Repertoire\Domain;
 
 use Repertoire\Domain\Constant\SongEra;
+use Repertoire\Domain\Exception\InvalidSongEraException;
 use Repertoire\Domain\Song;
 use Repertoire\Domain\Value\Identifier\SongId;
 use Repertoire\Domain\Value\SongName;
@@ -45,5 +46,11 @@ class SongTest extends \PHPUnit_Framework_TestCase
     {
         $song = Song::withNameAndEra("", SongEra::FIRST_ERA, true);
         $this->assertTrue($song->isEssential());
+    }
+
+    public function testASongCantHaveAnEraBiggerThan3()
+    {
+        $this->expectException(InvalidSongEraException::class);
+        Song::withNameAndEra("Hey Jude", 5);
     }
 }

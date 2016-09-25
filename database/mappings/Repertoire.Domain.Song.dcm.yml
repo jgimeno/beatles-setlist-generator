@@ -10,6 +10,8 @@ Repertoire\Domain\Song:
       type: songname
     essential:
       type: boolean
+    era:
+      type:
   manyToOne:
     band:
       targetEntity: Band
