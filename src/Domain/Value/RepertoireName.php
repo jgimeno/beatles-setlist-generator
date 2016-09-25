@@ -2,6 +2,6 @@
 
 namespace Repertoire\Domain\Value;
 
-class RepertoireName
+class RepertoireName extends ValueObject
 {
 }

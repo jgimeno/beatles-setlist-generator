@@ -114,6 +114,7 @@ return [
         'json' => LaravelDoctrine\ORM\Types\Json::class,
         'bandname' => Repertoire\Infrastructure\DoctrineTypes\BandName::class,
         'songname' => Repertoire\Infrastructure\DoctrineTypes\SongName::class,
+        'repertoirename' => Repertoire\Infrastructure\DoctrineTypes\RepertoireName::class,
     ],
     /*
     |--------------------------------------------------------------------------

@@ -15,3 +15,9 @@ Repertoire\Domain\Band:
       cascade:
         - persist
         - remove
+    repertoires:
+      targetEntity: Repertoire
+      mappedBy: band
+      cascade:
+        - persist
+        - remove

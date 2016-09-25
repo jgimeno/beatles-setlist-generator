@@ -1,0 +1,17 @@
+# Repertoire.Domain.Repertoire.dcm.yml
+Repertoire\Domain\Repertoire:
+  type: entity
+  table: repertoires
+  id:
+    id:
+      type: string
+  fields:
+    name:
+      type: repertoirename
+  manyToOne:
+    band:
+      targetEntity: Band
+      inversedBy: repertoires
+      joinColumn:
+        name: band_id
+        referencedColumnName: id

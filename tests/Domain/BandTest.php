@@ -27,12 +27,12 @@ class BandTest extends \PHPUnit_Framework_TestCase
 
         $band->addRepertoire($repertoire1);
 
-        $this->assertEquals([$repertoire1], $band->getRepertoires());
+        $this->assertEquals(new ArrayCollection([$repertoire1]), $band->getRepertoires());
 
         $repertoire2 = Repertoire::withName("Fiesta Mayor Sabadell 2012");
         $band->addRepertoire($repertoire2);
 
-        $this->assertEquals([$repertoire1, $repertoire2], $band->getRepertoires());
+        $this->assertEquals(new ArrayCollection([$repertoire1, $repertoire2]), $band->getRepertoires());
     }
 
     public function testABandHasSongsThatTHeyKnowHowToPlay()

@@ -20,6 +20,11 @@ class Repertoire
     private $name;
 
     /**
+     * @var Band
+     */
+    protected $band;
+
+    /**
      * @var
      */
     protected $parts = [];
@@ -47,5 +52,10 @@ class Repertoire
     public function getParts() : array
     {
         return $this->parts;
+    }
+
+    public function assignToBand(Band $band)
+    {
+        $this->band = $band;
     }
 }

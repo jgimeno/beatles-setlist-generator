@@ -22,14 +22,14 @@ class Band
     private $name;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     private $songsWeKnow;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
-    protected $repertoires = array();
+    protected $repertoires;
 
     public function __construct(BandId $id = null, BandName $name = null)
     {
@@ -41,6 +41,7 @@ class Band
         $this->name = $name;
 
         $this->songsWeKnow = new ArrayCollection();
+        $this->repertoires = new ArrayCollection();
     }
 
     public static function withName(string $name)
@@ -51,9 +52,10 @@ class Band
     public function addRepertoire(Repertoire $repertoire)
     {
         $this->repertoires[] = $repertoire;
+        $repertoire->assignToBand($this);
     }
 
-    public function getRepertoires() : array
+    public function getRepertoires() : ArrayCollection
     {
         return $this->repertoires;
     }
