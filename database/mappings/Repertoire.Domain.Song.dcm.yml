@@ -7,7 +7,7 @@ Repertoire\Domain\Song:
       type: string
   fields:
     name:
-      type: string
+      type: songname
     essential:
       type: boolean
   manyToOne:

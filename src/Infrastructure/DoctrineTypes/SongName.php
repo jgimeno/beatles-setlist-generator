@@ -5,9 +5,9 @@ namespace Repertoire\Infrastructure\DoctrineTypes;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-class BandName extends Type
+class SongName extends Type
 {
-    const MYTYPE = 'bandname'; // modify to match your type name
+    const MYTYPE = 'songname'; // modify to match your type name
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -16,7 +16,7 @@ class BandName extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new \Repertoire\Domain\Value\BandName($value);
+        return new \Repertoire\Domain\Value\SongName($value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)

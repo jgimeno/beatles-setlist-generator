@@ -113,6 +113,7 @@ return [
     'custom_types'              => [
         'json' => LaravelDoctrine\ORM\Types\Json::class,
         'bandname' => Repertoire\Infrastructure\DoctrineTypes\BandName::class,
+        'songname' => Repertoire\Infrastructure\DoctrineTypes\SongName::class,
     ],
     /*
     |--------------------------------------------------------------------------

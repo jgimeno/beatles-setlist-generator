@@ -58,12 +58,23 @@ class Band
         return $this->repertoires;
     }
 
-    public function addSongWeKnow(Song $song)
+    public function knowsSong(Song $song)
     {
+        $isKnown = false;
+
         foreach ($this->songsWeKnow as $knownSong) {
             if ($song->isEqual($knownSong)) {
-                throw new BandAlreadyKnowsSongException();
+                $isKnown = true;
             }
+        }
+
+        return $isKnown;
+    }
+
+    public function addSongWeKnow(Song $song)
+    {
+        if ($this->knowsSong($song)) {
+            throw new BandAlreadyKnowsSongException("Band already knows song $song");
         }
 
         $this->songsWeKnow[] = $song;
@@ -73,5 +84,14 @@ class Band
     public function getSongsWeKnow(): ArrayCollection
     {
         return $this->songsWeKnow;
+    }
+
+    /**
+     * Gets the band name.
+     * @return BandName
+     */
+    public function getName(): BandName
+    {
+        return $this->name;
     }
 }
