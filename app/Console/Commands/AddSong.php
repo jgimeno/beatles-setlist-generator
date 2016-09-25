@@ -40,12 +40,11 @@ class AddSong extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
-        $songName = $this->argument('name');
-        $this->handler->execute(new AddSongWeKnow("The Beatboys", $songName));
+        $this->handler->execute(
+            new AddSongWeKnow("The Beatboys", $this->argument('name'))
+        );
     }
 }
