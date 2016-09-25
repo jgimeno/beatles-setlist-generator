@@ -39,4 +39,10 @@ class SongTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($song->isEqual($sameSong));
         $this->assertFalse($song->isEqual($anotherSong));
     }
+
+    public function testWeCanDefineASongAsImprescindible()
+    {
+        $song = Song::withName("", true);
+        $this->assertTrue($song->isEssential());
+    }
 }

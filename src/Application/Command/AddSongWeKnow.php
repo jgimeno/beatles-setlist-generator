@@ -14,10 +14,16 @@ class AddSongWeKnow
      */
     private $songName;
 
-    public function __construct(string $bandName, string $songName)
+    /**
+     * @var bool
+     */
+    private $essential;
+
+    public function __construct(string $bandName, string $songName, bool $essential = false)
     {
         $this->bandName = $bandName;
         $this->songName = $songName;
+        $this->essential = $essential;
     }
 
     /**
@@ -34,5 +40,13 @@ class AddSongWeKnow
     public function getSongName(): string
     {
         return $this->songName;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isEssential(): bool
+    {
+        return $this->essential;
     }
 }

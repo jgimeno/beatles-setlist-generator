@@ -23,6 +23,7 @@ class AddSongWeKnowHandler
     {
         $bandName = $command->getBandName();
         $songName = $command->getSongName();
+        $isEssential = $command->isEssential();
 
         $band = $this->bandRepository->getBandByName($bandName);
 
@@ -30,7 +31,7 @@ class AddSongWeKnowHandler
             $band = Band::withName($bandName);
         }
 
-        $song = Song::withName($songName);
+        $song = Song::withName($songName, $isEssential);
         $band->addSongWeKnow($song);
         $this->bandRepository->save($band);
     }
