@@ -74,7 +74,7 @@ class Band
     public function addSongWeKnow(Song $song)
     {
         if ($this->knowsSong($song)) {
-            throw new BandAlreadyKnowsSongException("Band already knows song ");
+            throw new BandAlreadyKnowsSongException("Band already knows song $song");
         }
 
         $this->songsWeKnow[] = $song;
