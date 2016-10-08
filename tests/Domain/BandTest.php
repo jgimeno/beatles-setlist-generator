@@ -70,8 +70,7 @@ class BandTest extends \PHPUnit_Framework_TestCase
         $era,
         $imprescindible,
         $expectedSongs
-    )
-    {
+    ) {
         $this->assertEquals($expectedSongs, $band->getSongsWeKnowByEra($era, $imprescindible)->toArray());
     }
 
