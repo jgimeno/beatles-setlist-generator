@@ -82,7 +82,7 @@ class Band
     public function getSongsWeKnowByEra(int $songEra, bool $essential = false): ArrayCollection
     {
         return $this->songsWeKnow->filter(
-            function ($song) use ($songEra, $essential) {
+            function (Song $song) use ($songEra, $essential) {
                 if ($essential) {
                     return $song->isFromEra($songEra) && $song->isEssential();
                 } else {
