@@ -3,6 +3,7 @@
 namespace Tests\Repertoire\Domain;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use PhpParser\Node\Expr\AssignOp\BitwiseAnd;
 use Repertoire\Domain\Band;
 use Repertoire\Domain\Constant\SongEra;
 use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
@@ -59,5 +60,15 @@ class BandTest extends \PHPUnit_Framework_TestCase
         $alreadyKnownSong = Song::withNameAndEra("Hey Jude", SongEra::THIRD_ERA);
 
         $band->addSongWeKnow($alreadyKnownSong);
+    }
+
+    public function testBandCanSayIfItKnowsOrNotAnySong()
+    {
+        $band = Band::withName("Abbey Road");
+        $this->assertFalse($band->knowsAnySong());
+
+        $songWeKnow = Song::withNameAndEra("Hey Jude", SongEra::THIRD_ERA);
+        $band->addSongWeKnow($songWeKnow);
+        $this->assertTrue($band->knowsAnySong());
     }
 }

@@ -58,4 +58,12 @@ class Repertoire
     {
         $this->band = $band;
     }
+
+    /**
+     * @return RepertoireName
+     */
+    public function getName(): RepertoireName
+    {
+        return $this->name;
+    }
 }

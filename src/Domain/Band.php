@@ -88,6 +88,11 @@ class Band
         return $this->songsWeKnow;
     }
 
+    public function knowsAnySong(): bool
+    {
+        return !$this->songsWeKnow->isEmpty();
+    }
+
     /**
      * Gets the band name.
      * @return BandName
