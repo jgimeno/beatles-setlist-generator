@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Repertoire\Domain;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Repertoire\Domain\Constant\SongEra;
 use Repertoire\Domain\Exception\BandAlreadyKnowsSongException;
 use Repertoire\Domain\Value\BandName;
 use Repertoire\Domain\Value\Identifier\BandId;
@@ -31,7 +32,7 @@ class Band
      */
     protected $repertoires;
 
-    public function __construct(BandId $id = null, BandName $name = null)
+    protected function __construct(BandId $id = null, BandName $name = null)
     {
         if (!$id || !$name) {
             throw new \InvalidArgumentException("Band needs at least Id and Name");
@@ -60,6 +61,11 @@ class Band
         return $this->repertoires;
     }
 
+    /**
+     * Checks if the band knows the given Song.
+     * @param Song $song
+     * @return bool
+     */
     public function knowsSong(Song $song)
     {
         $isKnown = false;
@@ -71,6 +77,19 @@ class Band
         }
 
         return $isKnown;
+    }
+
+    public function getSongsWeKnowByEra(int $songEra, bool $imprescindible = false): ArrayCollection
+    {
+        return $this->songsWeKnow->filter(
+            function ($song) use ($songEra, $imprescindible) {
+                if ($imprescindible) {
+                    return $song->isFromEra($songEra) && $song->isEssential() == $imprescindible;
+                } else {
+                    return $song->isFromEra($songEra);
+                }
+            }
+        );
     }
 
     public function addSongWeKnow(Song $song)

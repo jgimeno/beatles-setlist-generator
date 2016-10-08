@@ -53,4 +53,11 @@ class SongTest extends \PHPUnit_Framework_TestCase
         $this->expectException(InvalidSongEraException::class);
         Song::withNameAndEra("Hey Jude", 5);
     }
+
+    public function testWeCanKnowIfASongIsFromEra()
+    {
+        $song = Song::withNameAndEra("The long and winding road", SongEra::THIRD_ERA);
+        $this->assertTrue($song->isFromEra(SongEra::THIRD_ERA));
+        $this->assertFalse($song->isFromEra(SongEra::SECOND_ERA));
+    }
 }

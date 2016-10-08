@@ -23,7 +23,6 @@ class RepertoireGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->generator = new RepertoireGenerator();
     }
 
-
     public function testItInstantiatesCorrectly()
     {
         $this->assertInstanceOf(RepertoireGenerator::class, $this->generator);

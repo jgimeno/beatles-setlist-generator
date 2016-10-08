@@ -72,6 +72,15 @@ class Song
     }
 
     /**
+     * Asserts if a song is from especified Era.
+     * @return bool
+     */
+    public function isFromEra(int $era): bool
+    {
+        return $this->era == $era;
+    }
+
+    /**
      * @return SongName
      */
     public function getName(): SongName
